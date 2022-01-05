@@ -44,7 +44,10 @@ app.post("/users", (request, response) => {
   return response.status(201).json(user);
 });
 
-app.get("/todos", checksExistsUserAccount, (request, response) => {});
+app.get("/todos", checksExistsUserAccount, (request, response) => {
+  const { user } = request;
+  return response.status(200).json(user.todos);
+});
 
 app.post("/todos", checksExistsUserAccount, (request, response) => {
   const { title, deadline } = request.body;
